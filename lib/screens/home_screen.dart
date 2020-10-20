@@ -53,48 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
         itemCount: _memoList.length,
         itemBuilder: (BuildContext context, int index) {
           final text = _memoList[index];
-          return Dismissible(
-            key: Key(text),
-            background: Container(
-              color: Colors.red,
-            ),
-            onDismissed: (direction) {
-              _removeMemo(index, context);
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(color: Colors.grey[300]),
-                ),
-              ),
-              child: ListTile(
-                title: Text(
-                  text,
-                  style: TextStyle(),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-                trailing: Icon(
-                  Icons.arrow_forward_ios,
-                  color: Colors.grey[400],
-                ),
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return EditScreen(
-                          text: text,
-                          index: index,
-                        );
-                      },
-                    ),
-                  ).then(
-                    (value) => _loadMemoList(),
-                  );
-                },
-              ),
-            ),
-          );
+          return buildMemoItem(text, index, context);
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -113,6 +72,51 @@ class _HomeScreenState extends State<HomeScreen> {
             (value) => _loadMemoList(),
           );
         },
+      ),
+    );
+  }
+
+  Dismissible buildMemoItem(String text, int index, BuildContext context) {
+    return Dismissible(
+      key: Key(text),
+      background: Container(
+        color: Colors.red,
+      ),
+      onDismissed: (direction) {
+        _removeMemo(index, context);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(color: Colors.grey[300]),
+          ),
+        ),
+        child: ListTile(
+          title: Text(
+            text,
+            style: TextStyle(),
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+          ),
+          trailing: Icon(
+            Icons.arrow_forward_ios,
+            color: Colors.grey[400],
+          ),
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) {
+                  return EditScreen(
+                    text: text,
+                    index: index,
+                  );
+                },
+              ),
+            ).then(
+              (value) => _loadMemoList(),
+            );
+          },
+        ),
       ),
     );
   }
