@@ -93,6 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
           color: Colors.white,
         ),
       ),
+      direction: DismissDirection.endToStart,
       onDismissed: (direction) {
         _removeMemo(index, context);
       },
