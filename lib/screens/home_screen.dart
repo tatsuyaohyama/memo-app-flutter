@@ -49,7 +49,10 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: ListView.builder(
+      body: ListView.separated(
+        separatorBuilder: (context, index) => Divider(
+          height: 0.0,
+        ),
         itemCount: _memoList.length,
         itemBuilder: (BuildContext context, int index) {
           final text = _memoList[index];
@@ -80,43 +83,45 @@ class _HomeScreenState extends State<HomeScreen> {
     return Dismissible(
       key: Key(text),
       background: Container(
+        padding: EdgeInsets.only(
+          right: 10,
+        ),
+        alignment: AlignmentDirectional.centerEnd,
         color: Colors.red,
+        child: Icon(
+          Icons.delete,
+          color: Colors.white,
+        ),
       ),
+      direction: DismissDirection.endToStart,
       onDismissed: (direction) {
         _removeMemo(index, context);
       },
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(color: Colors.grey[300]),
-          ),
+      child: ListTile(
+        title: Text(
+          text,
+          style: TextStyle(),
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
         ),
-        child: ListTile(
-          title: Text(
-            text,
-            style: TextStyle(),
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
-          ),
-          trailing: Icon(
-            Icons.arrow_forward_ios,
-            color: Colors.grey[400],
-          ),
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  return EditScreen(
-                    text: text,
-                    index: index,
-                  );
-                },
-              ),
-            ).then(
-              (value) => _loadMemoList(),
-            );
-          },
+        trailing: Icon(
+          Icons.arrow_forward_ios,
+          color: Colors.grey[400],
         ),
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) {
+                return EditScreen(
+                  text: text,
+                  index: index,
+                );
+              },
+            ),
+          ).then(
+            (value) => _loadMemoList(),
+          );
+        },
       ),
     );
   }
