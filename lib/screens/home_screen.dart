@@ -83,7 +83,15 @@ class _HomeScreenState extends State<HomeScreen> {
     return Dismissible(
       key: Key(text),
       background: Container(
+        padding: EdgeInsets.only(
+          right: 10,
+        ),
+        alignment: AlignmentDirectional.centerEnd,
         color: Colors.red,
+        child: Icon(
+          Icons.delete,
+          color: Colors.white,
+        ),
       ),
       onDismissed: (direction) {
         _removeMemo(index, context);
