@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text(
           'リスト',
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.black,
           ),
         ),
       ),

@@ -47,18 +47,18 @@ class _EditScreenState extends State<EditScreen> {
         title: Text(
           widget.index != null ? '編集' : '新規作成',
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.black,
           ),
         ),
         leading: BackButton(
-          color: Colors.white,
+          color: Colors.blue,
         ),
         actions: [
           FlatButton(
             child: Text(
               '完了',
               style: TextStyle(
-                color: _controller.text.isEmpty ? Colors.white60 : Colors.white,
+                color: _controller.text.isEmpty ? Colors.black12 : Colors.blue,
                 fontSize: 16.0,
               ),
             ),
