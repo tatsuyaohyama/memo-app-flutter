@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       title: "Memo App",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.lightBlue,
+        primaryColor: Colors.white,
       ),
       home: HomeScreen(),
     );
